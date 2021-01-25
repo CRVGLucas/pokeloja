@@ -1,0 +1,14 @@
+.contentHome {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 10px;
+    margin: 0 30px;
+}
+
+.pageHome {
+    height: 100vh;
+    color: white;
+    background-color: '#222';
+}
+
+

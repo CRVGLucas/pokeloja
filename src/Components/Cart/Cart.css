@@ -1,0 +1,34 @@
+.cartContent {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    justify-content: right;
+}
+
+.cardTable {
+    padding: 10px;
+}
+
+.cardTable td {
+    padding: 10px;
+}
+
+.totalPrice{
+    width: 30vh;
+    padding: 20px;
+    color: black;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+.finishBuy{
+    cursor: pointer;
+    width: 30vh;
+    padding: 20px;
+    font-size: 25px;
+    background: green;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
