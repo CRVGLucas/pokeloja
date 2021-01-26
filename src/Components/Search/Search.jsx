@@ -3,7 +3,6 @@ import './Search.css';
 import queryString from 'query-string'
 var axios = require('axios').default;
 export default class Search extends React.Component {
-
     state = {
        pokemon: [],
        image: '',
