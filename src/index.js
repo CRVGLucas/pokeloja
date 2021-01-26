@@ -18,7 +18,7 @@ ReactDOM.render(
                 <Route path="/" exact={true} component={Home} />
                 <Route path="/tipo/:id" component={Type} />
                 <Route path="/info/:id" component={InfoPokemon} />
-                <Route path="/busca/:query" component={Search} />
+                <Route path="/busca/" component={Search} />
             </Switch>
             <Cart/>
         </div>

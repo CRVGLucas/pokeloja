@@ -1,0 +1,19 @@
+.searchContent{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+
+}
+.infoContent{
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+.txtHab{
+    text-align: center;
+}
+
+.imgContent {
+    padding: 50px;
+}
