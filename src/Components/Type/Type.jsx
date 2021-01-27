@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link, withRouter} from "react-router-dom";
 import './Type.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 var axios = require('axios').default;
  class Type extends React.Component {
     state = {
@@ -24,13 +26,10 @@ var axios = require('axios').default;
 
     }
 
-
-
-
-
     render() {
-        function addCart(id, name, price, linkImg , quantity , idType) {
-            const objCart = { id: id, name: name, price: price, img: linkImg, quantity: quantity, idType: idType}
+        function addCart(id, name, price, linkImg  ) {
+            toast.success(name + " foi adicionado ao carrinho!")
+            const objCart = { id: id, name: name, price: price, img: linkImg}
 
             let arrItems = [];
             if(localStorage.hasOwnProperty('cart')){
@@ -44,6 +43,7 @@ var axios = require('axios').default;
                 arrItem.push(objCart)
                 localStorage.setItem('cart' , [JSON.stringify(arrItem)]);
             }
+
         }
 
         let id = this.state.id;
@@ -62,6 +62,8 @@ var axios = require('axios').default;
                                     ${id== 11 ? 'cardWater' : ''}
                                     ${id== 16 ? 'cardDragon' : ''}
                                     ${id == 13 ? 'cardEletric' : ''}
+                                    ${id == 10 ? 'cardFire' : ''}
+                                    ${id == 12 ? 'cardIce' : ''}
                                 `} key={qry.id}>
                                 <Link to={`/info/${qry.id}`}>
                                 <div className="cardIMG">
@@ -73,7 +75,7 @@ var axios = require('axios').default;
                                 </div>
                             </Link>
                                 <div className="cardOptions">
-                                    <button className="addCart" onClick={e => addCart(  qry.id, qry.name, (qry.weight/qry.height).toFixed(2), qry.sprites.other['official-artwork'].front_default ,1 , id  )}>+</button>
+                                    <button className="addCart" onClick={e => addCart(  qry.id, qry.name, (qry.weight/qry.height).toFixed(2), qry.sprites.other['official-artwork'].front_default   )}>+</button>
                                     <Link to={`/info/${qry.id}`}>
                                         <button className="btnInfoPokemon">Detalhes</button>
                                     </Link>
@@ -83,7 +85,18 @@ var axios = require('axios').default;
                         </React.Fragment>
                     })
                 }
-
+                <ToastContainer
+                    position="bottom-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    type="success"
+                    draggable
+                    pauseOnHover
+                />
             </div>
         )
     }

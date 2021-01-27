@@ -1,54 +1,49 @@
 import React from 'react';
 import './InfoPokemon.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 var axios = require('axios').default;
+
 
 export default class InfoPokemon extends React.Component {
     state = {
         pokemon: [],
         image: '',
         status: [],
-        ability: [],
-        arrayHab: []
+        abilities: [],
+        arrayHab: [],
+        idType: 0
     }
     componentDidMount(props) {
         axios.get(`https://pokeapi.co/api/v2/pokemon/${this.props.match.params.id}`).then((query) => {
             console.log('query.data', query.data);
-
-            query.data.abilities.forEach(async (ab) => {
-
-                //effect_entries[1].short_effect
-                const hab = await axios.get(ab.ability.url);
-                //arra.push({ txtHab: hab.data.flavor_text_entries[2].flavor_text, txtEfeito: hab.data.effect_entries[1].short_effect})
-                //let obj = Object.assign(query.data.abilities, {
-                    //txtHab: hab.data.flavor_text_entries[2].flavor_text,
-                    //txtEfeito: hab.data.effect_entries[1].short_effect
-               // })
-                let ata = {}
-
-                let apafsp = Object.assign(query.data.abilities, {
-                    txtHab: hab.data.flavor_text_entries[2].flavor_text,
-                    txtEfeito: 'hab.data.effect_entries[1].short_effect'
+            axios.get(query.data.types[0].type.url).then((content) => {
+                this.setState({idType: content.data.id});
+            });
+            this.setState({
+                pokemon: query.data,
+                status: query.data.stats,
+                ability: query.data.abilities,
+                image: query.data.sprites.other['official-artwork'].front_default,
+            });
+            query.data.abilities.forEach(async (ability) => {
+                await axios.get(ability.ability.url).then((ab) => {
+                    let arrHab = [...this.state.abilities];
+                    arrHab.push({name: ab.data.name, text: ab.data.flavor_text_entries[0]});
+                    //console.log('habilidade: ', {name: ab.data.name, text: ab.data.flavor_text_entries[0]})
+                    this.setState({abilities: arrHab});
                 })
-                this.setState({
-                    pokemon: query.data,
-                    status: query.data.stats,
-                    ability: query.data.abilities,
-                    image: query.data.sprites.other['official-artwork'].front_default,
-                    arrayHab: {
-                        txtHab: hab.data.flavor_text_entries[2].flavor_text,
-                        txtEfeito: 'hab.data.effect_entries[1].short_effect'
-                    }
-                });
-                console.log('ABILITIES', query.data.abilities)
-                console.log('obj aqui: ', apafsp);
             })
+
         });
     }
 
     render(){
 
-        function addCart(id, name, price, linkImg , quantity ) {
-            const objCart = { id: id, name: name, price: price, img: linkImg, quantity: quantity}
+        function addCart(id, name, price, linkImg  ) {
+
+            const objCart = { id: id, name: name, price: price, img: linkImg}
+            toast.success(name + " foi adicionado ao carrinho!")
 
             let arrItems = [];
             if(localStorage.hasOwnProperty('cart')){
@@ -64,12 +59,14 @@ export default class InfoPokemon extends React.Component {
             }
         }
         return(
-            <div className="infoContent">
+
+
+
+            <div className="infoPokemonContent">
                 <div className="leftDiv">
                     <i className="btnBack" onClick={this.props.history.goBack}>Voltar</i>
-                    <button className="addCart" onClick={e =>addCart(  this.props.id, this.props.pokemon.name, (this.props.pokemon.weight/this.props.pokemon.height).toFixed(2), this.props.pokemon.sprites.other['official-artwork'].front_default ,1 )}>+</button>
+                    <button className="addCart" onClick={e =>addCart(  this.state.id, this.state.pokemon.name, (this.state.pokemon.weight/this.state.pokemon.height).toFixed(2), this.state.pokemon.sprites.other['official-artwork'].front_default )}>+</button>
                 </div>
-
                 <div>
                     <img src={this.state.image}/>
                 </div>
@@ -82,19 +79,29 @@ export default class InfoPokemon extends React.Component {
                         return(<div key={index}><b>{data.stat.name}</b> {data.base_stat}</div>);
                     })}
                     <h4>Habilidades</h4>
-                    {this.state.ability.map((data,index) => {
+                    {this.state.abilities.map((data,index) => {
                         return (
                             <div key={index}>
-                                {data.ability.name}
-                                <p>{this.state.arrayHab.txtHab}</p>
+                                <b>{data.name}</b>
+                                <p>{data.text.flavor_text}</p>
                             </div>
                         )
                     })}
                 </div>
-
-
-
+                <ToastContainer
+                    position="bottom-center"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    type="success"
+                    draggable
+                    pauseOnHover
+                />
             </div>
+
         )
     }
 }

@@ -17,13 +17,10 @@ export default props => {
                        <Card type={13} titulo="Elétrico" mainColor="#F0DD0C" linkImg="http://a3.ec-images.myspacecdn.com/images02/133/34ceb5c855454b539f7a6acca0eeb027/l.jpg"/>
                    </Link>
                    <Link to="/tipo/10">
-                       <Card type={10} titulo="Fogo" mainColor="#F0DD0C" linkImg="https://images.uncyc.org/pt/9/94/Pkmnfire.png"/>
+                       <Card type={10} titulo="Fogo" mainColor="#FA2204" linkImg="https://images.uncyc.org/pt/9/94/Pkmnfire.png"/>
                    </Link>
                    <Link to="/tipo/12">
-                       <Card type={12} titulo="Gelo" mainColor="#F0DD0C" linkImg="https://criticalhits.com.br/wp-content/uploads/2019/12/pokemon-go-evento-natal-2019.jpg"/>
-                   </Link>
-                   <Link to="/tipo/1">
-                       <Card type={1} titulo="Normal" mainColor="#F0DD0C" linkImg="https://pm1.narvii.com/6109/fc63a1c63e74f1009ef9de2be37adc6ad971bbbb_hq.jpg"/>
+                       <Card type={12} titulo="Gelo" mainColor="#C8E8F5" linkImg="https://criticalhits.com.br/wp-content/uploads/2019/12/pokemon-go-evento-natal-2019.jpg"/>
                    </Link>
            </div>
     );

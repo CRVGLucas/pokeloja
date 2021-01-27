@@ -1,13 +1,12 @@
-.infoContent{
+.infoPokemonContent{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    padding: 20px;
-
+    justify-content: space-between;
 }
 .btnBack{
     border: none;
     margin-top: 20px;
+    margin-bottom: 40px;
     height: 50px;
     font-weight: bold;
     color: black;
@@ -16,8 +15,7 @@
 }
 
 .leftDiv{
-
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    margin: 10px;
 }

@@ -34,8 +34,8 @@ export default class Search extends React.Component {
     }
     render() {
 
-        function addCart(id, name, price, linkImg , quantity ) {
-            const objCart = { id: id, name: name, price: price, img: linkImg, quantity: quantity}
+        function addCart(id, name, price, linkImg  ) {
+            const objCart = { id: id, name: name, price: price, img: linkImg}
 
             let arrItems = [];
             if(localStorage.hasOwnProperty('cart')){
@@ -56,7 +56,7 @@ export default class Search extends React.Component {
           <div className="searchContent">
              <div className="imgContent">
                  <p><i className="btnBack" onClick={this.props.history.goBack}>Voltar</i></p>
-                 <button className="addCart" onClick={e =>addCart(  this.props.id, this.props.pokemon.name, (this.props.pokemon.weight/this.props.pokemon.height).toFixed(2), this.props.pokemon.sprites.other['official-artwork'].front_default ,1 )}>+</button>
+                 <button className="addCart" onClick={e =>addCart(  this.state.id, this.state.pokemon.name, (this.state.pokemon.weight/this.state.pokemon.height).toFixed(2), this.state.pokemon.sprites.other['official-artwork'].front_default )}>+</button>
              </div>
              <div className="imgContent">
                      <p><img src={this.state.image}/></p>
