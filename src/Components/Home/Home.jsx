@@ -22,6 +22,7 @@ export default props => {
                    <Link to="/tipo/12">
                        <Card type={12} titulo="Gelo" mainColor="#C8E8F5" linkImg="https://criticalhits.com.br/wp-content/uploads/2019/12/pokemon-go-evento-natal-2019.jpg"/>
                    </Link>
+
            </div>
     );
 }
