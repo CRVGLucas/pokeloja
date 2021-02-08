@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Link} from "react-router-dom";
 import './Home.css';
 import Card from '../Card/Card'
-
+const axios = require('axios').default
 export default props => {
     return(
            <div className="contentHome">
